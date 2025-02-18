@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag Application</title>
+    <link rel="stylesheet" href="/auth/css/style.css">
+</head>
+<body class="main">
+
+<div>
+    <input type="email" id="email" placeholder="Enter email" required>
+    <br>
+    <input type="password" id="password" placeholder="Enter password" required>
+    <br>
+    <select id="markTypes" class="admin" style="display: none" multiple size="2">
+        <option class="admin" style="display: none" value="mark_types:search">SEARCH</option>
+        <option class="admin" style="display: none" value="mark_types:match">MATCH</option>
+    </select>
+    <br>
+    <button onclick="handleLogin()">Login</button>
+    <button class="admin" style="display: none" onclick="handleRegister()">Register</button>
+</div>
+<br>
+<br>
+<br>
+<button onclick="showInfo()" >Info</button>
+<div id="info"  style="display: none">
+    <p style="color: #F2F2F2; white-space: pre; overflow-y: auto">
+        В системе есть предзаполненные батчи, чтобы результат можно было посмотреть сразу
+        В системе есть два предзаполненных пользователя (admin@mail.ru password, assesor@mail.ru password)
+        Права на создание пользователя имеет только администратор
+        В системе есть и будут предзаполенные mark_type - SEARCH, MATCH, LEARNING - для того, чтобы вы могла создать батч и сразу отправить его на проверку
+
+        Вы можете создать свой mark_type через запрос
+        POST
+        localhost:8090/rest/main/marks
+
+        {"id": "MARKTYPENAME","grade": {"multiply": false,"attributes": ["Точно","Сопутствующий"]},
+        "entity" : {"multiply": true,"attributes": ["Товар б/у","Контрафакт","Ошибка"]}}
+        + Введите токен в авторизацию
+
+        Или воспользовавшись вводом на странице MarkType
+
+        Если вы не укажете марктайп - система выберет по умолчанию исходя из типа батча (это enum)
+
+        Загрузка данных для батча и их выгрузка предполагает рест запросы
+        GET
+        localhost:8090/rest/logic/score/{batchId}
+        Вернет вам все оценки по ресурсам батча
+        + токен
+
+        POST(мультипарт-форм дата)
+        key - file ; value - csvFile
+        key - setting; value - {"priority": 2,"overlap": 5,"consistency": 5.3,"batchType": "MATCHING", markType: "SEARCHING"}
+        + токен
+
+        Для большинства таблиц есть возможность вывода с пагинацией, но пока не реализована на фронте
+        Есть возможность поиска по ним
+        Есть возможность ограничения для батча по количеству пользователей
+        При выборе пользователя, на которого назначается батч происходит валидация его прав
+
+
+        Есть возможность не отправлять зпрос на оценку каждый раз а сохранить состояние и отправить в виде хэш-мап
+
+        Основные ресурсы приложения
+        - /auth - авторизация - /main - загрузка и общая информация о батчах
+        - /logic - основная логика с оценкой, назначением батча и оценкой пользователя </p>
+    <script>
+        function showInfo() {
+            var text = document.getElementById("info");
+            if (text.style.display === "none") {
+                text.style.display = "block";
+            } else {
+                text.style.display = "none";
+            }
+        }
+    </script>
+</div>
+
+<script src="/auth/js/app.js"></script>
+</body>
+</html>

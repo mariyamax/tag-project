@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Простое приложение</title>
+    <link rel="stylesheet" href="/main/css/style.css">
+</head>
+<body class="main">
+<nav>
+    <ul>
+        <li><button class="assessor admin" onclick="scoreFunction()">Score</button></li>
+
+        <li><button class="customer admin" style="display: none;" onclick="batchSettingShow()">BatchSettings</button></li>
+
+        <li><button class="admin" style="display: none;" onclick="markTypeShow()">Marktype</button> </li>
+
+        <li><button class="assessor admin" style="display: none;"  onclick="sourceShow()">Source</button></li>
+
+        <li><button onclick="logout()">Logout</button></li>
+    </ul>
+</nav>
+
+<div class="adminMarktype element" style="display: none;" >
+    <input type="email" id="markTypeJson" placeholder="MarkType json to create" required>
+    <button onclick="markTypeCreate()">CREATE</button>
+</div>
+
+<div class="sourceContainer element" style="display: none;" >
+    <table id="sourceTable">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>description</th>
+            <th>photo</th>
+            <th>title</th>
+            <th>url</th>
+            <th>batch_settings_id</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <table id="mappedSourceTable">
+        <thead>
+        <tr>
+            <th>first_id</th>
+            <th>first_description</th>
+            <th>first_photo</th>
+            <th>first_title</th>
+            <th>first_url</th>
+            <th>first_batch_settings_id</th>
+            <th>second_id</th>
+            <th>second_description</th>
+            <th>second_photo</th>
+            <th>second_title</th>
+            <th>second_url</th>
+            <th>second_batch_settings_id</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<div class="batchSettingContainer element" style="display: none;" >
+    <table id="batchSettingsTable">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>priority</th>
+            <th>overlap</th>
+            <th>consistency</th>
+            <th>markType</th>
+            <th>batchType</th>
+            <th>status</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
+<script src="/main/js/app.js"></script>
+</body>
+</html>

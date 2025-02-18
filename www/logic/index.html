@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Простое приложение</title>
+    <link rel="stylesheet" href="/logic/css/style.css">
+</head>
+<body class="main">
+<nav>
+    <ul>
+        <li><button class="admin assessor" onclick="usersRating()">Users</button></li>
+
+        <li><button class="admin assessor" style="display: none;"  onclick="homeShow()">Home Page</button></li>
+
+        <li><button class="admin" onclick="checkSettings()">Settings</button></li>
+
+        <!--TODO-->
+        <!--<li><button class="admin"  onclick="startValidate()">Validate</button></li>-->
+
+        <li><button class="admin assessor"  onclick="showScore()">Start score</button></li>
+
+        <li><button onclick="logout()">Logout</button></li>
+    </ul>
+</nav>
+
+<div class="personalPage element" style="display: none;" >
+</div>
+
+<div class="scorePage element" style="display: none;" >
+</div>
+
+<div class="settingsPage element" style="display: none;" >
+</div>
+
+<div class="userPage element" style="display: none;" >
+</div>
+
+<script src="/logic/js/app.js"></script>
+</body>
+</html>
